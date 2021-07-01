@@ -8,9 +8,10 @@ import (
 	"net/url"
 
 	"github.com/bab014/go_cfbd/models"
+	"github.com/bab014/go_cfbd/opts"
 )
 
-func (cfbd *CFBD) GetGames(queryParams GamesAPI) ([]models.Games, error) {
+func (cfbd *CFBD) GetGames(queryParams opts.GamesAPI) ([]models.Games, error) {
 
 	endpt := baseUrl.ResolveReference(&url.URL{Path: "games"})
 
@@ -58,7 +59,7 @@ func (cfbd *CFBD) GetGames(queryParams GamesAPI) ([]models.Games, error) {
 // Away       string;
 // Conference string;
 // Id         uint
-func (cfbd *CFBD) GetRecords(queryParams GamesAPI) ([]models.Records, error) {
+func (cfbd *CFBD) GetRecords(queryParams opts.GamesAPI) ([]models.Records, error) {
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "records"})
 
 	req, err := http.NewRequest(http.MethodGet, endpnt.String(), nil)
@@ -95,7 +96,7 @@ func (cfbd *CFBD) GetRecords(queryParams GamesAPI) ([]models.Records, error) {
 	}
 }
 
-func (cfbd *CFBD) GetCalendar(queryParams GamesAPI) ([]models.Calendar, error) {
+func (cfbd *CFBD) GetCalendar(queryParams opts.GamesAPI) ([]models.Calendar, error) {
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "calendar"})
 
 	req, err := http.NewRequest(http.MethodGet, endpnt.String(), nil)
@@ -133,7 +134,7 @@ func (cfbd *CFBD) GetCalendar(queryParams GamesAPI) ([]models.Calendar, error) {
 	}
 }
 
-func (cfbd *CFBD) GetMedia(queryParams GamesAPI) ([]models.Media, error) {
+func (cfbd *CFBD) GetMedia(queryParams opts.GamesAPI) ([]models.Media, error) {
 
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "games/media"})
 	req, err := http.NewRequest(http.MethodGet, endpnt.String(), nil)
@@ -170,7 +171,7 @@ func (cfbd *CFBD) GetMedia(queryParams GamesAPI) ([]models.Media, error) {
 	}
 }
 
-func (cfbd *CFBD) GetGamesPlayers(queryParams GamesAPI) ([]models.GamesPlayers, error) {
+func (cfbd *CFBD) GetGamesPlayers(queryParams opts.GamesAPI) ([]models.GamesPlayers, error) {
 
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "games/players"})
 	req, err := http.NewRequest(http.MethodGet, endpnt.String(), nil)
@@ -207,7 +208,7 @@ func (cfbd *CFBD) GetGamesPlayers(queryParams GamesAPI) ([]models.GamesPlayers, 
 	}
 }
 
-func (cfbd *CFBD) GetGamesTeams(queryParams GamesAPI) ([]models.GamesTeams, error) {
+func (cfbd *CFBD) GetGamesTeams(queryParams opts.GamesAPI) ([]models.GamesTeams, error) {
 
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "games/teams"})
 	req, err := http.NewRequest(http.MethodGet, endpnt.String(), nil)
@@ -244,7 +245,7 @@ func (cfbd *CFBD) GetGamesTeams(queryParams GamesAPI) ([]models.GamesTeams, erro
 	}
 }
 
-func (cfbd *CFBD) GetGamesBoxAdvanced(queryParams GamesAPI) (*models.GamesBoxAdvanced, error) {
+func (cfbd *CFBD) GetGamesBoxAdvanced(queryParams opts.GamesAPI) (*models.GamesBoxAdvanced, error) {
 
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "game/box/advanced"})
 	req, err := http.NewRequest(http.MethodGet, endpnt.String(), nil)

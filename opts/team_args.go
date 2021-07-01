@@ -1,4 +1,4 @@
-package cfbd
+package opts
 
 import (
 	"fmt"

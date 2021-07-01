@@ -10,16 +10,18 @@ import (
 	"github.com/bab014/go_cfbd/opts"
 )
 
-func (cfbd *CFBD) GetDrives(queryParams opts.DrivesAPI) ([]models.Drives, error) {
+func (cfbd *CFBD) GetPlays(queryParams opts.PlaysAPI) ([]models.Plays, error) {
 
-	endpnt := baseUrl.ResolveReference(&url.URL{Path: "drives"})
-	req, err := http.NewRequest(http.MethodGet, endpnt.String(), nil)
+	endpnts := baseUrl.ResolveReference(&url.URL{Path: "plays"})
+
+	req, err := http.NewRequest(http.MethodGet, endpnts.String(), nil)
 	if err != nil {
 		return nil, err
 	}
+
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Authorization", fmt.Sprint("Bearer ", cfbd.token))
-	req.URL.RawQuery = queryParams.DrivesQuery().Encode()
+	req.URL.RawQuery = queryParams.PlaysQuery().Encode()
 
 	res, err := cfbd.client.Do(req)
 	if err != nil {
@@ -29,16 +31,17 @@ func (cfbd *CFBD) GetDrives(queryParams opts.DrivesAPI) ([]models.Drives, error)
 
 	switch res.StatusCode {
 	case 200:
-		var drivesData []models.Drives
-		if err := json.NewDecoder(res.Body).Decode(&drivesData); err != nil {
+		var playsData []models.Plays
+		if err := json.NewDecoder(res.Body).Decode(&playsData); err != nil {
 			return nil, err
 		}
-		return drivesData, nil
+		return playsData, nil
 	case 400:
 		var errRes ErrorResponse
 		if err := json.NewDecoder(res.Body).Decode(&errRes); err != nil {
 			return nil, err
 		}
+
 		return nil, &errRes
 	default:
 		return nil, fmt.Errorf("unexpected status code %d", res.StatusCode)

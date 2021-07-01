@@ -7,9 +7,10 @@ import (
 	"net/url"
 
 	"github.com/bab014/go_cfbd/models"
+	"github.com/bab014/go_cfbd/opts"
 )
 
-func (cfbd *CFBD) GetTeams(queryParams TeamsAPI) ([]models.Team, error) {
+func (cfbd *CFBD) GetTeams(queryParams opts.TeamsAPI) ([]models.Team, error) {
 
 	endpt := baseUrl.ResolveReference(&url.URL{Path: "teams/fbs"})
 
@@ -52,7 +53,7 @@ func (cfbd *CFBD) GetTeams(queryParams TeamsAPI) ([]models.Team, error) {
 	}
 }
 
-func (cfbd *CFBD) GetRoster(queryParams TeamsAPI) ([]models.Players, error) {
+func (cfbd *CFBD) GetRoster(queryParams opts.TeamsAPI) ([]models.Players, error) {
 
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "roster"})
 
@@ -93,7 +94,7 @@ func (cfbd *CFBD) GetRoster(queryParams TeamsAPI) ([]models.Players, error) {
 
 }
 
-func (cfbd *CFBD) GetTalent(queryParams TeamsAPI) ([]models.Talent, error) {
+func (cfbd *CFBD) GetTalent(queryParams opts.TeamsAPI) ([]models.Talent, error) {
 
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "talent"})
 
@@ -134,7 +135,7 @@ func (cfbd *CFBD) GetTalent(queryParams TeamsAPI) ([]models.Talent, error) {
 
 }
 
-func (cfbd *CFBD) GetMatchup(queryParams TeamsAPI) (*models.Matchup, error) {
+func (cfbd *CFBD) GetMatchup(queryParams opts.TeamsAPI) (*models.Matchup, error) {
 
 	endpnt := baseUrl.ResolveReference(&url.URL{Path: "teams/matchup"})
 
